@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kingz of Twinz | Entertainment & Events</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="apple-touch-icon" href="images/favicon.jpg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip to Content (Accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to Content</a>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="nav__logo">
+                    <img src="images/logo.png" alt="Kingz of Twinz" class="logo-img">
+                </a>
+
+                <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+
+                <ul class="nav__menu" id="navMenu">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active">Home</a>
+                    </li>
+                    <li class="nav__item has-dropdown">
+                        <a href="#roster" class="nav__link">Roster</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#services" class="nav__link">Services</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#tours" class="nav__link">Tours</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#news" class="nav__link">News</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Slideshow -->
+    <section class="hero" id="home">
+        <!-- Slideshow Background -->
+        <div class="hero__slideshow">
+            <div class="hero__slide active">
+                <div class="hero__slide-bg hero__slide-bg--gradient">
+                    <!-- Abstract animated background -->
+                    <div class="abstract-bg">
+                        <div class="abstract-shape abstract-shape--1"></div>
+                        <div class="abstract-shape abstract-shape--2"></div>
+                        <div class="abstract-shape abstract-shape--3"></div>
+                        <div class="abstract-shape abstract-shape--4"></div>
+                        <div class="abstract-shape abstract-shape--5"></div>
+                        <div class="abstract-line abstract-line--1"></div>
+                        <div class="abstract-line abstract-line--2"></div>
+                        <div class="abstract-line abstract-line--3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__slide">
+                <div class="hero__slide-bg">
+                    <img src="images/spiceafrica.jpg" alt="Spice Africa Tour">
+                </div>
+            </div>
+            <div class="hero__slide">
+                <div class="hero__slide-bg">
+                    <img src="images/jahmeilafrica.jpg" alt="Jahmiel Africa Tour">
+                </div>
+            </div>
+        </div>
+        <div class="hero__overlay"></div>
+
+        <!-- Slide Contents -->
+        <div class="hero__slides-content">
+            <!-- Slide 1: Main -->
+            <div class="hero__content active" data-slide="0">
+                <div class="hero__text">
+                    <div class="hero__logo">
+                        <img src="images/logo.png" alt="Kingz of Twinz" class="hero__logo-img">
+                    </div>
+                    <p class="hero__tagline">ENTERTAINMENT • EVENTS • PRODUCTIONS</p>
+                </div>
+                <div class="hero__cta">
+                    <a href="#roster" class="btn btn--primary">View Roster</a>
+                    <a href="#contact" class="btn btn--outline">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: Spice Tour -->
+            <div class="hero__content" data-slide="1">
+                <div class="hero__text">
+                    <p class="hero__tour-label">Upcoming Tour</p>
+                    <h1 class="hero__title">
+                        <span class="title-reveal">SPICE</span>
+                        <span class="title-reveal delay">AFRICA TOUR</span>
+                    </h1>
+                    <p class="hero__tagline">MAY 2026 • DATES TBA</p>
+                </div>
+                <div class="hero__cta">
+                    <a href="#tours" class="btn btn--primary">View Tour</a>
+                    <a href="#contact" class="btn btn--outline">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: Jahmiel Tour -->
+            <div class="hero__content" data-slide="2">
+                <div class="hero__text">
+                    <p class="hero__tour-label">Upcoming Tour</p>
+                    <h1 class="hero__title">
+                        <span class="title-reveal">JAHMIEL</span>
+                        <span class="title-reveal delay">AFRICA TOUR</span>
+                    </h1>
+                    <p class="hero__tagline">MAY 2026 • DATES TBA</p>
+                </div>
+                <div class="hero__cta">
+                    <a href="#tours" class="btn btn--primary">View Tour</a>
+                    <a href="#contact" class="btn btn--outline">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero__scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+
+        <!-- Hero Slider Navigation -->
+        <div class="hero__nav">
+            <button class="hero__nav-btn active" data-slide="0"></button>
+            <button class="hero__nav-btn" data-slide="1"></button>
+            <button class="hero__nav-btn" data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- Marquee Text -->
+    <div class="marquee">
+        <div class="marquee__content">
+            <span>ENTERTAINMENT</span>
+            <span class="marquee__dot"></span>
+            <span>EVENTS</span>
+            <span class="marquee__dot"></span>
+            <span>PRODUCTIONS</span>
+            <span class="marquee__dot"></span>
+            <span>TALENT MANAGEMENT</span>
+            <span class="marquee__dot"></span>
+            <span>ENTERTAINMENT</span>
+            <span class="marquee__dot"></span>
+            <span>EVENTS</span>
+            <span class="marquee__dot"></span>
+            <span>PRODUCTIONS</span>
+            <span class="marquee__dot"></span>
+            <span>TALENT MANAGEMENT</span>
+            <span class="marquee__dot"></span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about__grid">
+                <div class="about__content">
+                    <span class="section__tag">About Us</span>
+                    <h2 class="section__title">Building Legacies.<br>Creating Moments.</h2>
+                    <p class="about__text">
+                        Kingz of Twinz is a premier entertainment company dedicated to creating unforgettable experiences.
+                        With years of expertise in event planning, production, and talent management, we bring your vision to life.
+                    </p>
+                    <div class="about__stats">
+                        <div class="stat">
+                            <span class="stat__number" data-count="500">0</span>
+                            <span class="stat__label">Events</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number" data-count="50">0</span>
+                            <span class="stat__label">Artists</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat__number" data-count="10">0</span>
+                            <span class="stat__label">Years</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about__visual">
+                    <div class="about__image-grid">
+                        <div class="about__img about__img--1">
+                            <div class="image-placeholder"><span>Image 1</span></div>
+                        </div>
+                        <div class="about__img about__img--2">
+                            <div class="image-placeholder"><span>Image 2</span></div>
+                        </div>
+                        <div class="about__img about__img--3">
+                            <div class="image-placeholder"><span>Image 3</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roster / Talent Section -->
+    <section class="section roster" id="roster">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__tag">The Roster</span>
+                <h2 class="section__title">Our Talent</h2>
+            </div>
+
+            <div class="roster__filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="artists">Artists</button>
+                <button class="filter-btn" data-filter="djs">DJs</button>
+            </div>
+
+            <div class="roster__grid">
+                <!-- Spice -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/spice.png" alt="Spice" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Spice</h3>
+                        <p class="talent-card__role">Dancehall Queen</p>
+                    </div>
+                </article>
+
+                <!-- Beenie Man -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/beenie.png" alt="Beenie Man" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Beenie Man</h3>
+                        <p class="talent-card__role">King of Dancehall</p>
+                    </div>
+                </article>
+
+                <!-- Elephant Man -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/elephantman.png" alt="Elephant Man" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Elephant Man</h3>
+                        <p class="talent-card__role">Energy God</p>
+                    </div>
+                </article>
+
+                <!-- Konshens -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/koshens.png" alt="Konshens" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Konshens</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+
+                <!-- Chris Martin -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/martin.png" alt="Chris Martin" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Chris Martin</h3>
+                        <p class="talent-card__role">Reggae Artist</p>
+                    </div>
+                </article>
+
+                <!-- Gyptian -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/gyptian.png" alt="Gyptian" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Gyptian</h3>
+                        <p class="talent-card__role">Reggae Artist</p>
+                    </div>
+                </article>
+
+                <!-- Tony Matterhorn -->
+                <article class="talent-card" data-category="djs">
+                    <div class="talent-card__image">
+                        <img src="images/artists/Tony Matterhorn.jpg" alt="Tony Matterhorn" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Soundcloud"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Tony Matterhorn</h3>
+                        <p class="talent-card__role">Selector / DJ</p>
+                    </div>
+                </article>
+
+                <!-- Jahmiel -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/jahmiel.png" alt="Jahmiel" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Jahmiel</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+
+                <!-- Jahvillani -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/jahvillani.jpg" alt="Jahvillani" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Jahvillani</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+
+                <!-- Pablo YG -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/pablo.png" alt="Pablo YG" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Pablo YG</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+
+                <!-- Shane O -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/shaneo.png" alt="Shane O" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Shane O</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+
+                <!-- Jah Vinci -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/jah vinci.png" alt="Jah Vinci" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Jah Vinci</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+
+                <!-- Vanessa Bling -->
+                <article class="talent-card" data-category="artists">
+                    <div class="talent-card__image">
+                        <img src="images/artists/bling.png" alt="Vanessa Bling" loading="lazy">
+                        <div class="talent-card__overlay">
+                            <div class="talent-card__socials">
+                                <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2"/></svg></a>
+                                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                                <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 15s1.5-1 4-1 4 1 4 1M7 12s2-1.5 5-1.5 5 1.5 5 1.5M6 9s2.5-2 6-2 6 2 6 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="talent-card__info">
+                        <h3 class="talent-card__name">Vanessa Bling</h3>
+                        <p class="talent-card__role">Dancehall Artist</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="roster__cta">
+                <a href="#" class="btn btn--outline">View Full Roster</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section__header section__header--left">
+                <span class="section__tag">What We Do</span>
+                <h2 class="section__title">Services</h2>
+            </div>
+
+            <div class="services__grid">
+                <div class="service-item">
+                    <span class="service-item__number">01</span>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Talent Management</h3>
+                        <p class="service-item__text">Full-service artist management including career development, branding, and strategic planning.</p>
+                    </div>
+                    <div class="service-item__arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-item__number">02</span>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Event Production</h3>
+                        <p class="service-item__text">World-class event production from intimate gatherings to large-scale concerts and festivals.</p>
+                    </div>
+                    <div class="service-item__arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-item__number">03</span>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Brand Partnerships</h3>
+                        <p class="service-item__text">Strategic brand collaborations and sponsorship opportunities for maximum impact.</p>
+                    </div>
+                    <div class="service-item__arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-item__number">04</span>
+                    <div class="service-item__content">
+                        <h3 class="service-item__title">Media Production</h3>
+                        <p class="service-item__text">Professional video, photography, and content creation for all platforms.</p>
+                    </div>
+                    <div class="service-item__arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Tours Section -->
+    <section class="section tours" id="tours">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__tag">Upcoming</span>
+                <h2 class="section__title">Africa Tours 2026</h2>
+            </div>
+
+            <div class="tours__grid">
+                <!-- Spice Africa Tour -->
+                <article class="tour-card">
+                    <div class="tour-card__image">
+                        <img src="images/spiceafrica.jpg" alt="Spice Africa Tour May 2026" loading="lazy">
+                        <div class="tour-card__badge">May 2026</div>
+                    </div>
+                    <div class="tour-card__content">
+                        <h3 class="tour-card__title">Spice Africa Tour</h3>
+                        <p class="tour-card__presenter">King of Twins Ent. x Spice Official Ent</p>
+                        <p class="tour-card__description">The Queen of Dancehall is coming to Africa in May 2026! Guinea, Zimbabwe, Kenya, Mali, Senegal, Nigeria, Congo, Cameroon, Ghana, Ethiopia, Seychelles & more. Dates TBA soon.</p>
+                        <a href="#contact" class="btn btn--primary">Book Now</a>
+                    </div>
+                </article>
+
+                <!-- Jahmiel Africa Tour -->
+                <article class="tour-card">
+                    <div class="tour-card__image">
+                        <img src="images/jahmeilafrica.jpg" alt="Jahmiel Africa Tour May 2026" loading="lazy">
+                        <div class="tour-card__badge">May 2026</div>
+                    </div>
+                    <div class="tour-card__content">
+                        <h3 class="tour-card__title">Jahmiel Africa Tour</h3>
+                        <p class="tour-card__presenter">King of Twins Entertainment x Patridge Music</p>
+                        <p class="tour-card__description">Jahmiel is coming to Africa in May 2026! Guinea, Zimbabwe, Kenya, Mali, Senegal, Nigeria, Congo, Cameroon, Ghana, Ethiopia, Seychelles & more. Dates TBA soon.</p>
+                        <a href="#contact" class="btn btn--primary">Book Now</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- News / Announcements Section -->
+    <section class="section news" id="news">
+        <div class="container">
+            <div class="news__header">
+                <div class="section__header section__header--left">
+                    <span class="section__tag">Latest</span>
+                    <h2 class="section__title">News & Updates</h2>
+                </div>
+                <div class="news__nav">
+                    <button class="news__nav-btn news__nav-btn--prev" aria-label="Previous">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="news__nav-btn news__nav-btn--next" aria-label="Next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="news__carousel" id="newsCarousel">
+                <div class="news__track">
+                    <article class="news-card">
+                        <div class="news-card__image">
+                            <img src="images/spiceafrica.jpg" alt="Spice Africa Tour" loading="lazy">
+                        </div>
+                        <div class="news-card__content">
+                            <span class="news-card__date">May 2026</span>
+                            <h3 class="news-card__title">Spice Africa Tour Announced</h3>
+                            <p class="news-card__excerpt">The Dancehall Queen is coming to Africa in May 2026! Dates TBA soon...</p>
+                            <a href="#tours" class="news-card__link">View Tour</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-card__image">
+                            <img src="images/jahmeilafrica.jpg" alt="Jahmiel Africa Tour" loading="lazy">
+                        </div>
+                        <div class="news-card__content">
+                            <span class="news-card__date">May 2026</span>
+                            <h3 class="news-card__title">Jahmiel Africa Tour Announced</h3>
+                            <p class="news-card__excerpt">Jahmiel is coming to Africa in May 2026! Dates TBA soon...</p>
+                            <a href="#tours" class="news-card__link">View Tour</a>
+                        </div>
+                    </article>
+
+                    <article class="news-card">
+                        <div class="news-card__image">
+                            <div class="image-placeholder"><span>News</span></div>
+                        </div>
+                        <div class="news-card__content">
+                            <span class="news-card__date">2026</span>
+                            <h3 class="news-card__title">More Tours Coming Soon</h3>
+                            <p class="news-card__excerpt">Stay tuned for more exciting tour announcements from Kingz of Twinz Entertainment...</p>
+                            <a href="#contact" class="news-card__link">Contact Us</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="cta__bg"></div>
+        <div class="container">
+            <div class="cta__content">
+                <h2 class="cta__title">Ready to Elevate<br>Your Vision?</h2>
+                <p class="cta__text">Let's create something extraordinary together.</p>
+                <a href="#contact" class="btn btn--primary btn--large">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="contact__grid">
+                <div class="contact__info">
+                    <span class="section__tag">Contact</span>
+                    <h2 class="section__title">Let's Work<br>Together</h2>
+                    <p class="contact__text">Ready to take your project to the next level? We'd love to hear from you.</p>
+
+                    <div class="contact__details">
+                        <div class="contact__item">
+                            <span class="contact__label">Email</span>
+                            <a href="mailto:Bookings@kingzoftwinz.com" class="contact__value">Bookings@kingzoftwinz.com</a>
+                        </div>
+                        <div class="contact__item">
+                            <span class="contact__label">Phone</span>
+                            <a href="tel:+18768175209" class="contact__value">+1 (876) 817-5209</a>
+                        </div>
+                        <div class="contact__item">
+                            <span class="contact__label">Location</span>
+                            <span class="contact__value">Kingston, Jamaica</span>
+                        </div>
+                    </div>
+
+                    <div class="contact__social">
+                        <a href="https://www.instagram.com/kingzoftwinzentertainment/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#000"/></svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact__form-wrapper">
+                    <form class="contact__form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group">
+                            <select id="inquiry" name="inquiry" required>
+                                <option value="" disabled selected></option>
+                                <option value="booking">Booking Inquiry</option>
+                                <option value="management">Management</option>
+                                <option value="press">Press / Media</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="inquiry">Inquiry Type</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="form-group form-group--full">
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                            <label for="message">Message</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__main">
+                <div class="footer__brand">
+                    <a href="#" class="footer__logo">
+                        <img src="images/logo.png" alt="Kingz of Twinz" class="footer-logo-img">
+                    </a>
+                </div>
+                <div class="footer__nav">
+                    <a href="#home">Home</a>
+                    <a href="#roster">Roster</a>
+                    <a href="#services">Services</a>
+                    <a href="#tours">Tours</a>
+                    <a href="#news">News</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer__social">
+                    <a href="https://www.instagram.com/kingzoftwinzentertainment/" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="YouTube">YT</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Kingz of Twinz. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
