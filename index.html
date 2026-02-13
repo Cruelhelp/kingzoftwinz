@@ -58,18 +58,8 @@
         <!-- Slideshow Background -->
         <div class="hero__slideshow">
             <div class="hero__slide active">
-                <div class="hero__slide-bg hero__slide-bg--gradient">
-                    <!-- Abstract animated background -->
-                    <div class="abstract-bg">
-                        <div class="abstract-shape abstract-shape--1"></div>
-                        <div class="abstract-shape abstract-shape--2"></div>
-                        <div class="abstract-shape abstract-shape--3"></div>
-                        <div class="abstract-shape abstract-shape--4"></div>
-                        <div class="abstract-shape abstract-shape--5"></div>
-                        <div class="abstract-line abstract-line--1"></div>
-                        <div class="abstract-line abstract-line--2"></div>
-                        <div class="abstract-line abstract-line--3"></div>
-                    </div>
+                <div class="hero__slide-bg">
+                    <img src="images/hero.jpg" alt="Kingz of Twinz Hero" loading="eager">
                 </div>
             </div>
             <div class="hero__slide">
@@ -104,7 +94,6 @@
             <!-- Slide 2: Spice Tour -->
             <div class="hero__content" data-slide="1">
                 <div class="hero__text">
-                    <p class="hero__tour-label">Upcoming Tour</p>
                     <h1 class="hero__title">
                         <span class="title-reveal">SPICE</span>
                         <span class="title-reveal delay">AFRICA TOUR</span>
@@ -120,7 +109,6 @@
             <!-- Slide 3: Jahmiel Tour -->
             <div class="hero__content" data-slide="2">
                 <div class="hero__text">
-                    <p class="hero__tour-label">Upcoming Tour</p>
                     <h1 class="hero__title">
                         <span class="title-reveal">JAHMIEL</span>
                         <span class="title-reveal delay">AFRICA TOUR</span>
@@ -224,9 +212,9 @@
     <div class="section-stack-inner">
     <section class="section roster" id="roster">
         <div class="container">
-            <div class="section__header">
+            <div class="section__header section__header--block">
                 <span class="section__tag">The Roster</span>
-                <h2 class="section__title">Our Talent</h2>
+                <h2 class="section__title section__title--block">Our Talent</h2>
             </div>
 
             <div class="roster__filter">
@@ -484,9 +472,9 @@
     <div class="section-stack-inner">
     <section class="section services" id="services">
         <div class="container">
-            <div class="section__header section__header--left">
+            <div class="section__header section__header--left section__header--block">
                 <span class="section__tag">What We Do</span>
-                <h2 class="section__title">Services</h2>
+                <h2 class="section__title section__title--block">Services</h2>
             </div>
 
             <div class="services__grid">
@@ -544,9 +532,9 @@
     <div class="section-stack-inner">
     <section class="section tours" id="tours">
         <div class="container">
-            <div class="section__header">
+            <div class="section__header section__header--block">
                 <span class="section__tag">Upcoming</span>
-                <h2 class="section__title">Africa Tours 2026</h2>
+                <h2 class="section__title section__title--block">Africa Tours 2026</h2>
             </div>
 
             <div class="tours__grid">
@@ -589,9 +577,9 @@
     <section class="section news" id="news">
         <div class="container">
             <div class="news__header">
-                <div class="section__header section__header--left">
+                <div class="section__header section__header--left section__header--block">
                     <span class="section__tag">Latest</span>
-                    <h2 class="section__title">News & Updates</h2>
+                    <h2 class="section__title section__title--block">News & Updates</h2>
                 </div>
                 <div class="news__nav">
                     <button class="news__nav-btn news__nav-btn--prev" aria-label="Previous">
@@ -644,8 +632,12 @@
             </div>
         </div>
     </section>
+    </div>
+    </div>
 
     <!-- CTA Section -->
+    <div class="section-stack">
+    <div class="section-stack-inner">
     <section class="section cta">
         <div class="cta__bg"></div>
         <div class="container">
@@ -656,8 +648,12 @@
             </div>
         </div>
     </section>
+    </div>
+    </div>
 
     <!-- Contact Section -->
+    <div class="section-stack">
+    <div class="section-stack-inner">
     <section class="section contact" id="contact">
         <div class="container">
             <div class="contact__grid">
@@ -732,6 +728,10 @@
             </div>
         </div>
     </section>
+    </div>
+    </div>
+
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -813,6 +813,8 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

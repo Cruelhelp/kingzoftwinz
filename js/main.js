@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initNewsCarousel();
     initContactForm();
     initHeroAnimation();
+    initGsapAnimations();
 });
 
 /* ========================================
@@ -22,41 +23,103 @@ function initNavigation() {
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     const navLinks = document.querySelectorAll('.nav__link');
+    const sections = Array.from(document.querySelectorAll('section[id]')).filter(section =>
+        document.querySelector(`.nav__link[href="#${section.id}"]`)
+    );
+
+    navToggle?.setAttribute('aria-expanded', 'false');
 
     navToggle?.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        const isOpen = navMenu.classList.contains('active');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navToggle?.classList.remove('active');
             navMenu?.classList.remove('active');
+            navToggle?.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         });
     });
 
-    // Update active link on scroll
-    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navToggle?.classList.remove('active');
+            navMenu?.classList.remove('active');
+            navToggle?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
 
-    function updateActiveLink() {
-        const scrollY = window.scrollY;
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu?.classList.contains('active')) {
+            navToggle?.classList.remove('active');
+            navMenu?.classList.remove('active');
+            navToggle?.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
 
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 150;
-            const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav__link[href="#${sectionId}"]`);
-
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => link.classList.remove('active'));
-                navLink?.classList.add('active');
-            }
-        });
+    function setActiveLink(sectionId) {
+        const navLink = document.querySelector(`.nav__link[href="#${sectionId}"]`);
+        navLinks.forEach(link => link.classList.remove('active'));
+        navLink?.classList.add('active');
     }
 
-    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    // Update active link on scroll
+    function updateActiveLink() {
+        if (!sections.length) return;
+
+        const headerOffset = 160;
+        let currentSection = sections[0];
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= headerOffset) {
+                currentSection = section;
+            }
+        });
+
+        setActiveLink(currentSection.getAttribute('id'));
+    }
+
+    if ('IntersectionObserver' in window) {
+        const sectionVisibility = new Map();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                sectionVisibility.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+            });
+
+            let bestSection = null;
+            let bestRatio = 0;
+            sectionVisibility.forEach((ratio, section) => {
+                if (ratio > bestRatio) {
+                    bestRatio = ratio;
+                    bestSection = section;
+                }
+            });
+
+            if (bestSection) {
+                setActiveLink(bestSection.getAttribute('id'));
+            }
+        }, {
+            rootMargin: '-35% 0px -45% 0px',
+            threshold: [0, 0.15, 0.3, 0.5, 0.7]
+        });
+
+        sections.forEach(section => {
+            sectionVisibility.set(section, 0);
+            observer.observe(section);
+        });
+    } else {
+        window.addEventListener('scroll', updateActiveLink, { passive: true });
+        window.addEventListener('resize', updateActiveLink);
+        updateActiveLink();
+    }
 }
 
 /* ========================================
@@ -110,9 +173,11 @@ function initSmoothScroll() {
 function initScrollReveal() {
     // Section overlap animations
     const sections = document.querySelectorAll('.section');
+    const sectionStacks = document.querySelectorAll('.section-stack');
+    const useGsap = typeof window.gsap !== 'undefined';
     sections.forEach((section, index) => {
         if (index > 0) { // Skip hero
-            section.classList.add('section-animate', 'section-overlap');
+            section.classList.add('section-animate');
         }
     });
 
@@ -120,7 +185,7 @@ function initScrollReveal() {
     const slideLeftElements = document.querySelectorAll('.about__content, .contact__info');
     const slideRightElements = document.querySelectorAll('.about__visual, .contact__form-wrapper');
     const scaleElements = document.querySelectorAll('.tour-card, .cta__content');
-    const rotateElements = document.querySelectorAll('.section__header');
+    const rotateElements = useGsap ? [] : document.querySelectorAll('.section__header');
 
     slideLeftElements.forEach(el => el.classList.add('slide-in-left'));
     slideRightElements.forEach(el => el.classList.add('slide-in-right'));
@@ -144,6 +209,13 @@ function initScrollReveal() {
     const animatedElements = document.querySelectorAll(
         '.section-animate, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, .clip-reveal, .bounce-in'
     );
+
+    if (!('IntersectionObserver' in window)) {
+        sections.forEach(section => section.classList.add('in-view'));
+        sectionStacks.forEach(stack => stack.classList.add('in-view'));
+        animatedElements.forEach(el => el.classList.add('in-view'));
+        return;
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -185,6 +257,7 @@ function initScrollReveal() {
     });
 
     sections.forEach(section => sectionObserver.observe(section));
+    sectionStacks.forEach(stack => sectionObserver.observe(stack));
 
     // Parallax-like effect for sections on scroll (desktop only)
     const isMobile = window.innerWidth < 768;
@@ -565,6 +638,45 @@ function initHeroAnimation() {
             firstContent.classList.add('active');
         }
     }, 100);
+}
+
+/* ========================================
+   GSAP Scroll Animations
+======================================== */
+function initGsapAnimations() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.section__title--block').forEach((title) => {
+        gsap.from(title, {
+            y: 50,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: title,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+
+    gsap.utils.toArray('.talent-card__image, .tour-card__image, .news-card__image').forEach((frame) => {
+        gsap.from(frame, {
+            y: 30,
+            scale: 0.96,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: frame,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
 }
 
 /* ========================================
