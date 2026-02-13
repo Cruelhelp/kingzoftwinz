@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initNewsCarousel();
     initContactForm();
     initHeroAnimation();
-    initGsapAnimations();
+    initAboutImageToggle();
+    initArtistModals();
 });
 
 /* ========================================
@@ -259,43 +260,6 @@ function initScrollReveal() {
     sections.forEach(section => sectionObserver.observe(section));
     sectionStacks.forEach(stack => sectionObserver.observe(stack));
 
-    // Parallax-like effect for sections on scroll (desktop only)
-    const isMobile = window.innerWidth < 768;
-    if (!isMobile) {
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    updateParallaxElements();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-    }
-}
-
-// Subtle parallax effect for depth (desktop only)
-function updateParallaxElements() {
-    // Skip on mobile for performance
-    if (window.innerWidth < 768) return;
-
-    const sections = document.querySelectorAll('.section-overlap.in-view');
-    const windowHeight = window.innerHeight;
-
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const sectionCenter = rect.top + rect.height / 2;
-        const viewportCenter = windowHeight / 2;
-        const distance = (sectionCenter - viewportCenter) / windowHeight;
-
-        // Subtle shadow intensity based on scroll position
-        const shadowIntensity = Math.max(0.5, 1 - Math.abs(distance) * 0.5);
-        section.style.boxShadow = `
-            0 -${40 * shadowIntensity}px ${100 * shadowIntensity}px rgba(0, 0, 0, ${0.8 * shadowIntensity}),
-            0 -10px 30px rgba(0, 0, 0, ${0.5 * shadowIntensity})
-        `;
-    });
 }
 
 /* ========================================
@@ -584,7 +548,7 @@ function initHeroAnimation() {
 
     let currentSlide = 0;
     const totalSlides = slides.length;
-    const autoPlayInterval = 6000; // 6 seconds per slide
+    const autoPlayInterval = 10000; // 10 seconds per slide
     let autoPlayTimer;
 
     function goToSlide(index) {
@@ -643,39 +607,206 @@ function initHeroAnimation() {
 /* ========================================
    GSAP Scroll Animations
 ======================================== */
-function initGsapAnimations() {
-    if (!window.gsap || !window.ScrollTrigger) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+/* ========================================
+   About Image Toggle (Mobile)
+======================================== */
+function initAboutImageToggle() {
+    const images = document.querySelectorAll('.about__image-grid .about__img');
+    if (!images.length) return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    function clearExpanded() {
+        images.forEach(img => img.classList.remove('about__img--expanded'));
+    }
 
-    gsap.utils.toArray('.section__title--block').forEach((title) => {
-        gsap.from(title, {
-            y: 50,
-            opacity: 0,
-            duration: 0.9,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: title,
-                start: 'top 80%',
-                toggleActions: 'play none none none'
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            if (window.innerWidth > 768) return;
+            const isExpanded = img.classList.contains('about__img--expanded');
+            clearExpanded();
+            if (!isExpanded) {
+                img.classList.add('about__img--expanded');
             }
         });
     });
 
-    gsap.utils.toArray('.talent-card__image, .tour-card__image, .news-card__image').forEach((frame) => {
-        gsap.from(frame, {
-            y: 30,
-            scale: 0.96,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-                trigger: frame,
-                start: 'top 85%',
-                toggleActions: 'play none none none'
-            }
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            clearExpanded();
+        }
+    });
+}
+
+/* ========================================
+   Artist Modals
+======================================== */
+function initArtistModals() {
+    const modal = document.getElementById('artistModal');
+    if (!modal) return;
+
+    const modalImage = document.getElementById('artistModalImage');
+    const modalTitle = document.getElementById('artistModalTitle');
+    const modalSubtitle = document.getElementById('artistModalSubtitle');
+    const modalGenre = document.getElementById('artistModalGenre');
+    const modalDetails = document.getElementById('artistModalDetails');
+    const closeButtons = modal.querySelectorAll('[data-modal-close]');
+
+    const artistData = {
+        'spice': {
+            name: 'Spice',
+            subtitle: 'Grace Latoya Hamilton',
+            dob: 'Born 6 Aug 1982 in Spanish Town, Jamaica (43 years old as of Feb 12 2026).',
+            genres: 'Dancehall, reggae, reggae-fusion.',
+            description: 'Known as the Queen of Dancehall. Broke through after Sting 2000, gained international attention with the 2009 single "Romping Shop." Her mixtape Captured debuted at #1 on the Billboard Reggae Albums chart and her album 10 reached #6 and later earned a Grammy nomination.',
+            metrics: 'Single "Go Down Deh" (feat. Shaggy and Sean Paul) went Platinum in Canada in Feb 2024. Captured topped Billboard Reggae Albums. 10 debuted at #6 on the same chart.'
+        },
+        'christopher-martin': {
+            name: 'Christopher Martin',
+            subtitle: 'Christopher Oteng Martin',
+            dob: 'Born 14 Feb 1987 in Back Pasture, St Catherine, Jamaica (38 years old as of Feb 12 2026).',
+            genres: 'Reggae, dancehall, reggae-fusion.',
+            description: 'Won Digicel Rising Stars in 2005 and is known for romantic hits like "Cheaters Prayer" and "I\'m a Big Deal."',
+            metrics: 'Album And Then (2019) debuted at #1 on Billboard Reggae Albums. EP Steppin Razor peaked at #15 and Big Deal (2017) reached #3.'
+        },
+        'jahmiel': {
+            name: 'Jahmiel',
+            subtitle: 'Jamiel Foster',
+            dob: 'Born 30 Aug 1992 in Portmore, Jamaica (33 years old).',
+            genres: 'Roots-influenced dancehall and reggae.',
+            description: 'Began singing at age four. His inspirational lyrics and melodic delivery gained attention with the 2015 single "Gain the World."',
+            metrics: '"Gain the World" has amassed over seven million views on YouTube.'
+        },
+        'jahvillani': {
+            name: 'Jahvillani',
+            subtitle: 'Dujon Mario Edwards',
+            dob: 'Born 8 Sept 1994 in Ocho Rios, Jamaica (31 years old).',
+            genres: 'Dancehall and reggae.',
+            description: 'Known for gritty street anthems and the Wileside clique. Broke through with "Wileside Government" and "Clarks Pon Foot." Debut EP Dirt to Bentley released in 2021.',
+            metrics: '"Wileside Government" has more than five million views on YouTube and dominated local charts.'
+        },
+        'pablo-yg': {
+            name: 'Pablo YG',
+            subtitle: 'Romeo Hines',
+            dob: 'Born 24 Feb 2004 in Shaw Park, St Ann (21 years old as of Feb 12 2026).',
+            genres: 'Dancehall and trap-dancehall.',
+            description: 'Released his first single "Ready" in 2020 and broke out with the 2023 Bad Juvi Mixtape featuring "Rich N Richer."',
+            metrics: 'YouTube channel surpassed 40 million views. "Rich N Richer" and Sting 2022 performances earned two IRAWMA awards. Featured in Supreme/Clarks campaign.'
+        },
+        'shane-o': {
+            name: 'Shane O',
+            subtitle: 'Roshain McDonald',
+            dob: 'Born 1987 in Kingston, Jamaica (about 39 years old as of Feb 2026).',
+            genres: 'Dancehall.',
+            description: 'Recorded his first song at age 11. Broke through with "Lightning Flash" and returned with motivational tracks like "A Mill Fi Share" and "Relentless."',
+            metrics: 'Comeback singles such as "Relentless" and "Star In The Sky" have hundreds of thousands of YouTube views.'
+        },
+        'konshens': {
+            name: 'Konshens',
+            subtitle: 'Garfield Delano Spence',
+            dob: 'Born 11 Jan 1985 in Kingston, Jamaica (41 years old).',
+            genres: 'Dancehall, reggae, reggae-fusion.',
+            description: 'Rose to prominence with "Winner" and "Bruk Off Yuh Back." Known for versatile delivery and international collaborations.',
+            metrics: '"Bruk Off Yuh Back" video has over 160 million views and was certified Silver in the UK in 2023.'
+        },
+        'jah-vinci': {
+            name: 'Jah Vinci',
+            subtitle: 'Kirk Rhoden (also credited as Andre Rhoden)',
+            dob: 'Born 9 Feb 1988 (38 years old as of Feb 12 2026).',
+            genres: 'Dancehall and reggae.',
+            description: 'Former Portmore Empire member known for "Weh Dem a Guh Do." Later formed the Out Clear movement.',
+            metrics: 'Single "Scream" topped charts for three weeks in late 2024 and reached 1.8 million views in two weeks. "Virgin" has over 30 million views.'
+        },
+        'vanessa-bling': {
+            name: 'Vanessa Bling',
+            subtitle: 'Vawnessa Saddler',
+            dob: 'Born 19 Feb 1991 in Unity District, St Andrew, Jamaica (34 years old as of Feb 12 2026).',
+            genres: 'Dancehall and reggae.',
+            description: 'Introduced as Gaza Slim by Vybz Kartel, later re-emerged under her own name with songs like "Future Guaranteed" and the project Still Standing.',
+            metrics: 'EP Still Standing debuted at #9 on Billboard Reggae Albums. Collaboration "Push Button Start" has over 1.5 million YouTube views.'
+        },
+        'tony-matterhorn': {
+            name: 'Tony Matterhorn',
+            subtitle: 'Dufton Taylor',
+            dob: 'Born 9 March 1972 in Kingston, Jamaica (53 years old).',
+            genres: 'Dancehall and sound-system selecting.',
+            description: 'Legendary selector who won the Dancehall World Cup sound clash in 2000 and went global with "Dutty Wine."',
+            metrics: '"Dutty Wine" spent 11 weeks atop BBC 1Xtra Dancehall and peaked at #35 on Billboard R&B/Hip-Hop Singles.'
+        },
+        'elephant-man': {
+            name: 'Elephant Man',
+            subtitle: "O'Neil Norman Bryan",
+            dob: 'Born 11 Sept 1975 in Seaview Gardens, Kingston (50 years old).',
+            genres: 'Dancehall and reggae-fusion.',
+            description: 'Energy God known for explosive performances and hits like "Pon De River, Pon De Bank" and "Jook Gal."',
+            metrics: 'Two Billboard Hot 100 hits ("Pon De River, Pon De Bank" #86, "Jook Gal" #57). UK peak #29 for "Pon De River."'
+        },
+        'gyptian': {
+            name: 'Gyptian',
+            subtitle: 'Windel Beneto Edwards',
+            dob: 'Born 25 Oct 1983 in Kingston, Jamaica (42 years old).',
+            genres: 'Reggae, roots reggae, lovers rock, dancehall.',
+            description: 'Won the 2004 Star Search competition and gained attention with "Serious Times." Known for smooth vocals and lovers rock influence.',
+            metrics: '"Hold Yuh" peaked at #91 on Billboard Hot 100 and topped Reggae Digital Songs for nine weeks. Album Hold You reached #2 on Billboard Reggae Albums.'
+        },
+        'beenie-man': {
+            name: 'Beenie Man',
+            subtitle: 'Anthony Moses Davis',
+            dob: 'Born 22 Aug 1973 in Waterhouse, Kingston, Jamaica (52 years old).',
+            genres: 'Dancehall and reggae.',
+            description: 'Known as the King of Dancehall. Broke through in the 1990s with "Who Am I (Sim Simma)" and remains a global ambassador for Jamaican music.',
+            metrics: 'Grammy winner for Art and Life (2001). Multiple UK chart hits including "Who Am I" (#10) and "Dude" (#7).'
+        }
+    };
+
+    function buildDetailList(data) {
+        const details = [
+            ['DOB / Age', data.dob],
+            ['Genres', data.genres],
+            ['Description', data.description],
+            ['Notable metrics', data.metrics]
+        ];
+
+        modalDetails.innerHTML = details.map(([label, value]) => (
+            `<li><strong>${label}:</strong> ${value}</li>`
+        )).join('');
+    }
+
+    function openModal(card) {
+        const key = card.dataset.artist;
+        const data = artistData[key];
+        if (!data) return;
+
+        const img = card.querySelector('img');
+        modalImage.src = img?.getAttribute('src') || '';
+        modalImage.alt = img?.getAttribute('alt') || data.name;
+        modalTitle.textContent = data.name;
+        modalSubtitle.textContent = `Government name: ${data.subtitle}`;
+        modalGenre.textContent = data.genres;
+        buildDetailList(data);
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.talent-card[data-artist]').forEach(card => {
+        card.addEventListener('click', (event) => {
+            if (event.target.closest('a')) return;
+            openModal(card);
         });
+    });
+
+    closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
     });
 }
 
