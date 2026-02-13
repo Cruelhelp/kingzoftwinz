@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroAnimation();
     initAboutImageToggle();
     initArtistModals();
+    initTalentPeek();
+    initBookingModal();
 });
 
 /* ========================================
@@ -799,6 +801,97 @@ function initArtistModals() {
             if (event.target.closest('a')) return;
             openModal(card);
         });
+    });
+
+    closeButtons.forEach(btn => btn.addEventListener('click', closeModal));
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
+}
+
+/* ========================================
+   Talent Peek on Scroll (Mobile)
+======================================== */
+function initTalentPeek() {
+    const cards = document.querySelectorAll('.talent-card');
+    if (!cards.length) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    let observer;
+    const hideTimers = new Map();
+
+    function setupObserver() {
+        if (observer) observer.disconnect();
+        hideTimers.forEach(timer => clearTimeout(timer));
+        hideTimers.clear();
+
+        if (window.innerWidth > 768) {
+            cards.forEach(card => card.classList.remove('is-peek'));
+            return;
+        }
+
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const card = entry.target;
+                if (entry.isIntersecting) {
+                    card.classList.add('is-peek');
+                    if (hideTimers.has(card)) {
+                        clearTimeout(hideTimers.get(card));
+                    }
+                    const timer = setTimeout(() => {
+                        card.classList.remove('is-peek');
+                        hideTimers.delete(card);
+                    }, 1200);
+                    hideTimers.set(card, timer);
+                } else {
+                    if (hideTimers.has(card)) {
+                        clearTimeout(hideTimers.get(card));
+                        hideTimers.delete(card);
+                    }
+                    card.classList.remove('is-peek');
+                }
+            });
+        }, {
+            threshold: 0.6
+        });
+
+        cards.forEach(card => observer.observe(card));
+    }
+
+    setupObserver();
+    window.addEventListener('resize', setupObserver);
+}
+
+/* ========================================
+   Booking Image Modal
+======================================== */
+function initBookingModal() {
+    const modal = document.getElementById('bookingModal');
+    const modalImage = document.getElementById('bookingModalImage');
+    if (!modal || !modalImage) return;
+
+    const closeButtons = modal.querySelectorAll('[data-booking-close]');
+
+    function openModal(src, alt) {
+        modalImage.src = src;
+        modalImage.alt = alt || 'Booking highlight';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        modalImage.src = '';
+    }
+
+    document.querySelectorAll('[data-booking]').forEach(img => {
+        img.addEventListener('click', () => openModal(img.src, img.alt));
     });
 
     closeButtons.forEach(btn => btn.addEventListener('click', closeModal));

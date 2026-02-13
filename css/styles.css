@@ -1084,7 +1084,34 @@ img[src*="spiceafrica"] {
     transition: opacity var(--transition-base);
 }
 
+.talent-card__overlay::before {
+    content: 'Click for more details';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-white);
+    opacity: 0;
+    transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
 .talent-card:hover .talent-card__overlay {
+    opacity: 1;
+}
+
+.talent-card:hover .talent-card__overlay::before {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+
+.talent-card.is-peek .talent-card__overlay {
+    opacity: 1;
+}
+
+.talent-card.is-peek .talent-card__overlay::before {
     opacity: 1;
 }
 
@@ -1371,6 +1398,92 @@ img[src*="spiceafrica"] {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-xl);
+}
+
+/* ========================================
+   Bookings Grid
+======================================== */
+.bookings {
+    background: var(--color-black);
+}
+
+.bookings__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+.bookings__grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform var(--transition-base), filter var(--transition-base);
+    filter: saturate(0.95);
+    cursor: pointer;
+}
+
+.bookings__grid img:hover {
+    transform: scale(1.03);
+    filter: saturate(1.1);
+}
+
+/* Booking Modal */
+.booking-modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: var(--z-modal);
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.booking-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.booking-modal__overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.booking-modal__dialog {
+    position: relative;
+    max-width: min(92vw, 980px);
+    max-height: 85vh;
+    z-index: 1;
+}
+
+.booking-modal__image {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 6px;
+    display: block;
+}
+
+.booking-modal__close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+    transition: background var(--transition-fast);
+}
+
+.booking-modal__close:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .tour-card {
@@ -2611,6 +2724,11 @@ a.contact__value:hover {
         font-size: var(--fs-xs);
     }
 
+    /* Bookings */
+    .bookings__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     /* News */
     .news__header {
         flex-direction: column;
@@ -2887,6 +3005,11 @@ a.contact__value:hover {
         padding: 4px 8px;
     }
 
+    /* Bookings */
+    .bookings__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     /* News */
     .news-card {
         flex: 0 0 90%;
@@ -3156,7 +3279,6 @@ a.contact__value:hover {
     }
 
     .talent-card__overlay {
-        opacity: 1;
         background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
     }
 
