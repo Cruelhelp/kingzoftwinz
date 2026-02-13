@@ -105,30 +105,124 @@ function initSmoothScroll() {
 }
 
 /* ========================================
-   Scroll Reveal Animation
+   Scroll Reveal Animation - DRAMATIC
 ======================================== */
 function initScrollReveal() {
-    const revealElements = document.querySelectorAll(
-        '.section__header, .about__content, .about__visual, .talent-card, .service-item, .news-card, .cta__content, .contact__info, .contact__form-wrapper'
-    );
-
-    revealElements.forEach((el, index) => {
-        el.classList.add('reveal');
-        el.style.transitionDelay = `${index % 4 * 0.1}s`;
+    // Section overlap animations
+    const sections = document.querySelectorAll('.section');
+    sections.forEach((section, index) => {
+        if (index > 0) { // Skip hero
+            section.classList.add('section-animate', 'section-overlap');
+        }
     });
+
+    // Individual element animations with dramatic effects
+    const slideLeftElements = document.querySelectorAll('.about__content, .contact__info');
+    const slideRightElements = document.querySelectorAll('.about__visual, .contact__form-wrapper');
+    const scaleElements = document.querySelectorAll('.tour-card, .cta__content');
+    const rotateElements = document.querySelectorAll('.section__header');
+
+    slideLeftElements.forEach(el => el.classList.add('slide-in-left'));
+    slideRightElements.forEach(el => el.classList.add('slide-in-right'));
+    scaleElements.forEach(el => el.classList.add('scale-in'));
+    rotateElements.forEach(el => el.classList.add('rotate-in'));
+
+    // Stagger items with more dramatic entrance
+    const talentCards = document.querySelectorAll('.talent-card');
+    const serviceItems = document.querySelectorAll('.service-item');
+    const newsCards = document.querySelectorAll('.news-card');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const statItems = document.querySelectorAll('.stat');
+
+    talentCards.forEach(el => el.classList.add('stagger-item'));
+    serviceItems.forEach(el => el.classList.add('stagger-item'));
+    newsCards.forEach(el => el.classList.add('stagger-item'));
+    filterBtns.forEach(el => el.classList.add('stagger-item'));
+    statItems.forEach(el => el.classList.add('stagger-item'));
+
+    // Intersection Observer for all animated elements - dramatic timing
+    const animatedElements = document.querySelectorAll(
+        '.section-animate, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, .clip-reveal, .bounce-in'
+    );
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                // Add slight delay for dramatic effect
+                requestAnimationFrame(() => {
+                    entry.target.classList.add('in-view');
+                });
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -80px 0px'
     });
 
-    revealElements.forEach(el => observer.observe(el));
+    animatedElements.forEach(el => observer.observe(el));
+
+    // Separate observer for sections to trigger child animations with drama
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Dramatic section entrance
+                requestAnimationFrame(() => {
+                    entry.target.classList.add('in-view');
+                });
+
+                // Trigger stagger animations for children with dramatic timing
+                const staggerItems = entry.target.querySelectorAll('.stagger-item');
+                staggerItems.forEach((item, i) => {
+                    setTimeout(() => {
+                        item.classList.add('in-view');
+                    }, 150 + (i * 120)); // Longer delays for drama
+                });
+            }
+        });
+    }, {
+        threshold: 0.05,
+        rootMargin: '0px 0px -30px 0px'
+    });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Parallax-like effect for sections on scroll (desktop only)
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateParallaxElements();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+}
+
+// Subtle parallax effect for depth (desktop only)
+function updateParallaxElements() {
+    // Skip on mobile for performance
+    if (window.innerWidth < 768) return;
+
+    const sections = document.querySelectorAll('.section-overlap.in-view');
+    const windowHeight = window.innerHeight;
+
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const viewportCenter = windowHeight / 2;
+        const distance = (sectionCenter - viewportCenter) / windowHeight;
+
+        // Subtle shadow intensity based on scroll position
+        const shadowIntensity = Math.max(0.5, 1 - Math.abs(distance) * 0.5);
+        section.style.boxShadow = `
+            0 -${40 * shadowIntensity}px ${100 * shadowIntensity}px rgba(0, 0, 0, ${0.8 * shadowIntensity}),
+            0 -10px 30px rgba(0, 0, 0, ${0.5 * shadowIntensity})
+        `;
+    });
 }
 
 /* ========================================
